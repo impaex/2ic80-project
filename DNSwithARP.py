@@ -62,10 +62,10 @@ def attack(ipAttacker, macAttacker, ipVictim, macVictim, ipGateway, macGateway, 
             print("Stopped ARP Poisoning")
 
 # User input provides network interface, IP addresses
-iface = input("Enter Network Interface: ")
-ipVictim = input("Enter Victim IP: ")
-ipGateway = input("Enter Gateway IP: ")
-opMode = int(input("Enter Operational Mode (0: silent, 1: all out): "))
+iface = raw_input("Enter Network Interface: ")
+ipVictim = raw_input("Enter Victim IP: ")
+ipGateway = raw_input("Enter Gateway IP: ")
+opMode = raw_input(input("Enter Operational Mode (0: silent, 1: all out): "))
 
 # Find IP and MAC addresses
 ipAttacker, macAttacker = getOwnMacIP(iface)
