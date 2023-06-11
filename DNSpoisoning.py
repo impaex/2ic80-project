@@ -67,7 +67,7 @@ def attack(ipAttacker, macAttacker, ipVictim, macVictim, ipGateway, macGateway, 
         print("Stopped ARP Poisoning" if type_attack == 0 else "Stopped DNS Spoofing with SSL Stripping")
 
 # User input provides network interface, IP addresses
-type_attack = raw_input("Type ARP for ARP spoofing, DNS for DNS spoofing").lower()
+type_attack = raw_input("Type ARP for ARP spoofing, DNS for DNS spoofing ").lower()
 if type_attack == "arp":
   type_attack = 0
 else:
