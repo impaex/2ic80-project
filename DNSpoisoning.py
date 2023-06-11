@@ -75,7 +75,7 @@ else:
 iface = raw_input("Enter Network Interface: ")
 ipVictim = raw_input("Enter Victim IP: ")
 ipGateway = raw_input("Enter Gateway IP: ")
-if type_attack == 0
+if type_attack == 0:
   opMode = int(raw_input("Enter Operational Mode (0: silent, 1: all out): "))
 
 # Find IP and MAC addresses
