@@ -77,7 +77,7 @@ ipVictim = raw_input("Enter Victim IP: ")
 ipGateway = raw_input("Enter Gateway IP: ")
 if type_attack == 0:
   opMode = int(raw_input("Enter Operational Mode (0: silent, 1: all out): "))
-    ipSpoofed = None
+  ipSpoofed = None
 else:
     opMode = None
     ipSpoofed = raw_input("Enter the IP to spoof: ")
